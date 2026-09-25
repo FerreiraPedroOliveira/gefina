@@ -1,0 +1,12 @@
+{
+    "name": "gefina",
+    "version": "0.0.0",
+    "description": "Sistema de gestão de contas.",
+    "author": "Pedro Oliveira Ferreira",
+    "type":"module",
+    "scripts": {
+        "dev":"node --watch ./server.ts"
+    }
+
+
+}
