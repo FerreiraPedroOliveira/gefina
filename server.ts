@@ -1,5 +1,6 @@
 
 import express from 'express';
+import { error } from 'node:console';
 
 type InvoiceStatus = 'pending' | 'paid';
 
@@ -64,6 +65,18 @@ app.get('api/invoices',function(request,response){
 
     
 })
+
+app.get('/api/invoces/:id', function(request,response){
+  const id = +request.params.id;
+
+ 
+  for(let i = 0; i < invoices.length;i++){
+    if (invoices[i].id===id){
+      response.status(200).json(invoices[i]);
+      return;
+    }
+  }
+});
 
 app.use(function(request,response){
 
