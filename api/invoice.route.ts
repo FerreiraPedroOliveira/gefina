@@ -1,19 +1,17 @@
-import { Router } from "express";
-import invoices from "./invoice.data.ts";
-const router = Router()
+import { Router } from 'express';
+import invoices from './invoice.data.ts';
 
-router.get('api/invoices',function(request,response){
-    response.status(200).json(invoices);
+const router = Router();
 
-    
-})
+router.get('api/invoices', (_request, response) => {
+  response.status(200).json(invoices);
+});
 
-router.get('/api/invoces/:id', function(request,response){
+router.get('/api/invoces/:id', (request, response) => {
   const id = +request.params.id;
 
- 
-  for(let i = 0; i < invoices.length;i++){
-    if (invoices[i].id===id){
+  for (let i = 0; i < invoices.length; i++) {
+    if (invoices[i].id === id) {
       response.status(200).json(invoices[i]);
       return;
     }
@@ -21,28 +19,3 @@ router.get('/api/invoces/:id', function(request,response){
 });
 
 export default router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
