@@ -18,7 +18,7 @@ export default function InvoiceTable(props: invoiceTableprops){
         </thead>
         <tbody>
             {props.invoices.map(invoice=>(
-                <InvoiceRow invoice={invoice}/>
+                <InvoiceRow key={invoice.id} invoice={invoice}/>
             ))}
         </tbody>
     </table>
