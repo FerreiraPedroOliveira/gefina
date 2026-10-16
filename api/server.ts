@@ -19,12 +19,21 @@ app.use((request, _reponse, next) => {
 });
 
 app.get('/api/health', async (_request, response) => {
-  const conect = await pool.query('SELECT datname FROM pg_database WHERE oid = 5;');
-  
-  response.status(200).json({
-    server:'Server is running.',
-    database:conect.rows[0].datname
-  });
+  try{
+    const conect = await pool.query('SELECT datname FROM pg_database WHERE oid = 5;');
+    
+    response.status(200).json({
+      server:'Server is running.',
+      database:conect.rows[0].datname
+    });
+
+  }catch(error){
+    console.error(error);
+    response.status(500).json({
+      status:'Server is runing',
+      database:'unvaliable'
+    });
+  }
 });
 
 app.use('/api/invoices', invoices);
