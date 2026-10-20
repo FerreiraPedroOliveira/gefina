@@ -8,6 +8,7 @@ import dashboard from './dashboard.route.ts'
 import pool from './database.ts';
 
 import invoices from './invoice.route.ts';
+import { request } from 'node:http';
 
 
 const app = express();
@@ -42,6 +43,14 @@ app.use('/api/dashboard',dashboard)
 app.use('/api/invoices', invoices);
 
 app.use(express.static(dist));
+
+app.use((request,response,next)=>{
+  if (request.url.startsWith('/api')){
+    next();
+    return;
+  }
+  response.sendFile(path.join(dist, 'index.html'));
+})
 
 app.use((_request, response) => {
   response.status(404).json({ message: 'Recurso não encontrado' });
