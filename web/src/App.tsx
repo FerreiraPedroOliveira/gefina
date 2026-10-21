@@ -10,13 +10,24 @@ import InvoicePage from './InvoicePage.tsx';
 
 export default function App(){
     return <BrowserRouter>
-        <nav>
-            <Link to='/'>Pinel inicial</Link>
-            <Link to='/Faturas'>Faturas</Link>
-        </nav>
+        <aside>
+            <header>Gefina</header>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to='/'>Pinel inicial</Link>
+                    </li>
+                    <li>
+                        <Link to='/Faturas'>Faturas</Link>
+                    </li>
+                </ul>    
+            </nav>
+        </aside>
+        <main>
         <Routes>
             <Route path='/' element={<DashboardPage/>}/>
-            <Route path='/Faturas' element={<DashboardPage/>}/>
+            <Route path='/Faturas' element={<InvoicePage/>}/>
         </Routes>
+        </main>
     </BrowserRouter>;
 }
