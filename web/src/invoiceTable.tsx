@@ -11,8 +11,8 @@ export default function InvoiceTable(props: invoiceTableprops){
             <tr>
             <th>Cliente</th>
             <th>Valor</th>
-            <th>Data de emissão</th>
-            <th>Data de vencimento</th>
+            <th className="numeric-date">Data de emissão</th>
+            <th className="numeric-date">Data de vencimento</th>
             <th>Situação</th>
             </tr>
         </thead>

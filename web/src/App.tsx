@@ -2,7 +2,7 @@ import{
     BrowserRouter,
     Routes,
     Route,
-    Link
+    NavLink
 } from 'react-router';
 
 import DashboardPage from './DashBoardPage.tsx';
@@ -15,10 +15,10 @@ export default function App(){
             <nav>
                 <ul>
                     <li>
-                        <Link to='/'>Pinel inicial</Link>
+                        <NavLink to='/'>Pinel inicial</NavLink>
                     </li>
                     <li>
-                        <Link to='/Faturas'>Faturas</Link>
+                        <NavLink to='/Faturas'>Faturas</NavLink>
                     </li>
                 </ul>    
             </nav>
