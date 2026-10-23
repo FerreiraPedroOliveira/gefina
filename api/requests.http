@@ -1,0 +1,45 @@
+@host = http://localhost:3000
+
+### Verificar saúde 
+GET {{host}}/api/health
+
+###Buscar métricas
+
+GET {{host}}/api/dashboard
+
+###Buscar faturas 
+
+GET  {{host}}/api/invoices
+
+###Buscar fatura pelo indentificador
+
+GET {{host}}/api/invoices/195
+
+###Criar fatura
+
+POST {{host}}/api/invoices
+Content-Type: application/json
+
+{
+    "customerId": 1,
+    "amount": 125037,
+    "status": "pending",
+    "issueDate":"2026-10-01",
+    "dueDate": "2026-10-31"
+}
+
+###Alterar Fatura
+
+PUT {{host}}/api/invoices/195
+Content-Type: application/json
+
+{
+    "customerId": 1,
+    "amount": 125037,
+    "status": "paid",
+    "issueDate":"2026-10-02",
+    "dueDate": "2026-10-31"
+}
+
+### Deletar fatura
+DELETE {{host}}/api/invoices/195

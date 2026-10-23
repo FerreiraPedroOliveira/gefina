@@ -12,6 +12,7 @@ import { request } from 'node:http';
 
 
 const app = express();
+app.use(express.json());
 
 const dist = path.join(import.meta.dirname, '..','web','dist');
 
