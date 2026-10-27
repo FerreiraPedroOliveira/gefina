@@ -14,6 +14,12 @@ GET  {{host}}/api/invoices
 ###Buscar fatura pelo indentificador
 
 GET {{host}}/api/invoices/195
+###Buscar fatura pelo indentificador por identificador indisponivel
+
+GET {{host}}/api/invoices/999999
+###Buscar fatura pelo indentificador por identificador ivalido
+
+GET {{host}}/api/invoices/abc
 
 ###Criar fatura
 
