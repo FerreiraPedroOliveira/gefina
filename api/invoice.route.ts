@@ -1,29 +1,17 @@
-import { response, Router } from 'express';
+import {Router} from 'express';
 import { findAllInvoices, findInvoiceById, insertInvoice, modifyInvoice, removeInvoice } from './invoice.service.ts';
-import { error } from 'node:console';
-import { request } from 'node:http';
+
+
 
 const router = Router();
 
 router.get('/', async (_request, response) => {
-  try {
-    const invoices = await findAllInvoices();
+  const invoices = await findAllInvoices();
     response.status(200).json(invoices);
-
-  } catch (error) {
-    console.error(error);
-  }
-  response.status(500).json({
-    error: {
-      status: 500,
-      message: 'Não foi possivel carregar faturas'
-    }
-  })
 });
 
 router.get('/:id', async (request, response) => {
-  try {
-    const id = Number(request.params.id);
+  const id = Number(request.params.id);
     const invoice = await findInvoiceById(id);
 
     if (!invoice) response.status(404).json({
@@ -33,22 +21,10 @@ router.get('/:id', async (request, response) => {
       }
     })
     response.status(200).json(invoice);
-
-  } catch (error) {
-    console.error(error);
-
-    response.status(500).json({
-      error: {
-        status: 500,
-        message: 'Não foi possivel carregar faturas'
-      }
-    })
-  }
 });
 
 router.post('/', async (request, response) => {
-  try {
-    const invoice = await insertInvoice(request.body);
+ const invoice = await insertInvoice(request.body);
     if (!invoice) response.status(404).json({
       error: {
         status: 404,
@@ -57,22 +33,11 @@ router.post('/', async (request, response) => {
     })
 
     response.status(201).json(invoice);
-  } catch (error) {
-    console.error(error);
-
-    response.status(500).json({
-      error: {
-        status: 500,
-        message: 'Não foi possivel inserir faturas.'
-      }
-    });
-  }
 
 });
 
 router.put('/:id', async (request, response) => {
-  try {
-    const invoice = await modifyInvoice(
+ const invoice = await modifyInvoice(
       Number(request.params.id),
       request.body
     );
@@ -85,24 +50,10 @@ router.put('/:id', async (request, response) => {
     })
 
     response.status(200).json(invoice)
-  }
-  catch (error) {
-    console.error(error);
-
-    response.status(500).json({
-      error: {
-        status: 500,
-        message: 'Não foi possivel modificar faturas.'
-      }
-    });
-
-
-  }
 })
 
 router.delete('/:id', async (request, response) => {
-  try {
-    const deleted = await removeInvoice(Number(request.params.id));
+ const deleted = await removeInvoice(Number(request.params.id));
   
     if (!deleted) response.status(404).json({ error: {
       status: 404,
@@ -110,14 +61,6 @@ router.delete('/:id', async (request, response) => {
     }});
   
     response.status(204).end();
-  } catch (error) {
-    console.error(error);
-
-    response.status(500).json({ error: {
-      status: 500,
-      message: 'Não foi possível remover fatura.'
-    }});
-  }
 })
 
 
