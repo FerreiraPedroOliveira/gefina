@@ -89,7 +89,7 @@ function toInvoices(row:InvoiceRow[]):Invoice[]{
 export async function findAllInvoices(): Promise <Invoice[]>{
   const connect = await pool.query<InvoiceRow>(
     `${baseQuery} 
-    ORDER BY invoices.issue_date DESC;`);
+    ORDER BY invoices.created_at DESC;`);
 
   return toInvoices (connect.rows)
   

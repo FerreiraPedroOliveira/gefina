@@ -4,7 +4,7 @@ import { findCustomersOptions } from "./customer.service.ts";
 
 const router = Router();
 
-router. get('/opitions', async(request, response)=>{
+router. get('/options', async(_request, response)=>{
     const customersOptions = await findCustomersOptions();
 
     response.status(200).json(customersOptions)
