@@ -256,6 +256,13 @@ form {
   width: 100%;
 }
 
+.confirm-form{
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-grow: 1;
+}
+
 input,
 select,
 button {
