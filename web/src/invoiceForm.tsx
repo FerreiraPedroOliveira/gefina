@@ -9,8 +9,8 @@ interface InvoiceFormProps {
     error: string | null;
     onDelete: () => void;
     confirmDelete: boolean;
-    setConfirmDelete: React.Dispatch<SetStateAction<boolean>>
-    confirm:()=> void;
+    setConfirmDelete: React.Dispatch<SetStateAction<boolean>>;
+    confirm: () => void;
     onCancel: () => void;
     onSubmit: (values: InvoiceInput) => void;
     busy: boolean;
@@ -35,7 +35,7 @@ export default function InvoiceForm(props: InvoiceFormProps) {
             dueDate
         });
     };
-    
+
     return <form onSubmit={handleSubmit}>
         <h2>{!props.invoice ? 'Criar fatura' : 'Editar fatura'}</h2>
 
@@ -126,15 +126,15 @@ export default function InvoiceForm(props: InvoiceFormProps) {
         {props.confirmDelete && <div className='confirm-form'>
             <p>A exclusão é definitiva e não pode ser desfeita. Deseja prosseguir?</p>
             <button className='button-secondary'
-            type='button'
-            disabled={props.busy}
-            onClick={()=> props.setConfirmDelete(false)}
+                type='button'
+                disabled={props.busy}
+                onClick={() => props.setConfirmDelete(false)}
             >Não</button>
             <button
-            className='button-danger'
-            type='button'
-            disabled={props.busy}
-            onClick={props.confirm}
+                className='button-danger'
+                type='button'
+                disabled={props.busy}
+                onClick={props.confirm}
             >Sim</button>
         </div>}
     </form>;
