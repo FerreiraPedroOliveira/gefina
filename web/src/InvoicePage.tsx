@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-import type { Invoice, InvoiceInput } from './invoiceType.ts';
+import type { Invoice, InvoiceInput, invoiceFieldErrors } from './invoiceType.ts';
 import InvoiceTable from './invoiceTable.tsx';
 import InvoiceForm from './invoiceForm.tsx';
 
@@ -13,6 +13,7 @@ export default function InvoicePage() {
     const [error, setError] = useState<string | null>(null);
     const [busy, setBusy] = useState(false);
     const [formError, setFormError] = useState<string | null>(null);
+    const [fieldErrors,setFieldErrors]=useState<invoiceFieldErrors>({})
     const [loading, setLoading] = useState(true);
     const [dialogContent, setDialogContent] = useState(false);
     const [target, setTarget]=useState<Invoice | null>(null);
@@ -80,7 +81,8 @@ export default function InvoicePage() {
 
         try {
             if (!target){
-                await createInvoice(datas); 
+                const failure = await createInvoice(datas);
+                if (failure)return setFieldErrors (failure.fields)
             }else{
                 await updateInvoice(target.id, datas);
             }
@@ -89,9 +91,11 @@ export default function InvoicePage() {
             await refresh();
         } catch (error) {
             if (error instanceof Error) setFormError(error.message);
+        }finally{
+
+            setBusy(false);
         }
 
-        setBusy(false);
     }
 
     async function confirm(){
@@ -136,10 +140,12 @@ export default function InvoicePage() {
 
                 setDialogContent(false);
                 setConfirmDelete(false);
+                setFieldErrors({});
             } 
             }
         >
             {dialogContent && <InvoiceForm
+                fieldErrors={fieldErrors}
                 invoice={target}
                 customers={customersOptions}
                 error={formError}

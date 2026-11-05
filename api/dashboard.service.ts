@@ -1,10 +1,10 @@
 import pool from "./database.ts";
 import {
     type Invoice,
-    type InvoiceStatus,
     findRecentInvoices,
     findOverdueInvoices
 } from './invoice.service.ts';
+import type { InvoiceStatus } from "./invoiceSchema.ts";
 
 type Resource = 'invoices' | 'customers'
 
