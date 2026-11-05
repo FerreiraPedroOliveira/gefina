@@ -256,6 +256,11 @@ form {
   width: 100%;
 }
 
+.form-error{
+  font-size: var(--text-sm);
+  color: var(--color-overdue);
+}
+
 .confirm-form{
   display: flex;
   align-items: center;
