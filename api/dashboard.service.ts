@@ -1,12 +1,12 @@
-import pool from "./database.ts";
+import pool from './database.ts';
+
 import {
     type Invoice,
     findRecentInvoices,
     findOverdueInvoices
 } from './invoice.service.ts';
-import type { InvoiceStatus } from "./invoiceSchema.ts";
 
-type Resource = 'invoices' | 'customers'
+import type { InvoiceStatus } from './invoice.schema.ts';
 
 async function sumAmountByStatus(status: InvoiceStatus): Promise<number> {
     const connect = await pool.query(
@@ -17,8 +17,11 @@ async function sumAmountByStatus(status: InvoiceStatus): Promise<number> {
     return connect.rows[0].total;
 }
 
+type Resource = 'invoices' | 'customers';
+
 async function count(resource: Resource): Promise<number> {
     const connect = await pool.query(`SELECT COUNT(*)::int AS total FROM ${resource};`);
+
     return connect.rows[0].total;
 }
 
@@ -26,8 +29,7 @@ interface DashboardTotals {
     paid: number;
     pending: number;
     invoiceCount: number;
-    customersCount: number;
-
+    customerCount: number;
 }
 
 interface Dashboard {
@@ -38,22 +40,20 @@ interface Dashboard {
 
 export default async function findDashboard(): Promise<Dashboard> {
     const paid = await sumAmountByStatus('paid');
-    const pending = await sumAmountByStatus('pending')
-    const invoiceCount = await count('invoices')
-    const customersCount = await count('customers')
-    const recentInvoices = await findOverdueInvoices()
-    const overdueInvoices = await findOverdueInvoices()
-
+    const pending = await sumAmountByStatus('pending');
+    const invoiceCount = await count('invoices');
+    const customerCount = await count('customers');
+    const recentInvoices = await findRecentInvoices();
+    const overdueInvoices = await findOverdueInvoices();
 
     return {
         totals: {
             paid,
             pending,
             invoiceCount,
-            customersCount
+            customerCount
         },
         recentInvoices,
         overdueInvoices
-
     };
 }

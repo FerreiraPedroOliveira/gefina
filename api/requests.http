@@ -3,7 +3,7 @@
 ### Verificar saúde
 GET {{host}}/api/health
 
-### Consultar métricas
+### Buscar métricas
 GET {{host}}/api/dashboard
 
 ### Buscar opções de clientes

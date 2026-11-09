@@ -16,56 +16,6 @@ import invoices from './invoice.route.ts';
 import handleError from './error.middleware.ts';
 
 
-const app = express();
-app.use(express.json());
-
-const dist = path.join(import.meta.dirname, '..','web','dist');
-
-
-app.use((request, _reponse, next) => {
-  console.log(`${request.method} ${request.url}`);
-  next();
-});
-
-app.get('/api/health', async (_request, response) => {
-  try{
-    const conect = await pool.query('SELECT datname FROM pg_database WHERE oid = 5;');
-    
-    response.status(200).json({
-      server:'Server is running.',
-      database:conect.rows[0].datname
-    });
-    
-  }catch(error){
-    console.error(error);
-    response.status(500).json({
-      status:'Server is runing',
-      database:'unvaliable'
-    });
-  }
-});
-
-app.use('/api/dashboard',dashboard);
-app.use('/api/customers', customers);
-app.use('/api/invoices', invoices);
-app.use(express.static(dist));
-
-app.use((request,response,next)=>{
-  if (request.url.startsWith('/api') || !fs.existsSync(path.join(dist, 'index.html'))){
-    next();
-    return;
-  }
-  response.sendFile(path.join(dist, 'index.html'));
-})
-
-app.use((_request, response) => {
-  response.status(404).json({ error:{
-  status:404,
-  message: 'Recurso não encontrado' 
-  }});
-    
-});
-
-app.use(handleError);
+import app from './app.ts'
 
 app.listen(Number (process.env.PORT) || 3000);
