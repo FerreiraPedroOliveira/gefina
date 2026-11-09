@@ -1,6 +1,6 @@
 import pool from './database.ts';
 
-import type { InvoiceStatus, InvoiceInput } from './invoiceSchema.ts'
+import type { InvoiceStatus, InvoiceInput } from './invoice.Schema.ts'
 
 type InvoiceSituation = 'paid' | 'pending' | 'overdue';
 

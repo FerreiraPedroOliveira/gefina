@@ -6,7 +6,7 @@ import {
     findOverdueInvoices
 } from './invoice.service.ts';
 
-import type { InvoiceStatus } from './invoice.schema.ts';
+import type { InvoiceStatus } from './invoice.Schema.ts';
 
 async function sumAmountByStatus(status: InvoiceStatus): Promise<number> {
     const connect = await pool.query(
