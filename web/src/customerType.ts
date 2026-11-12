@@ -1,5 +1,5 @@
-export interface CustomerOption{
-    id:number
-    email:string;
-    name:string;
+export interface CustomerOption {
+  id: number;
+  email: string;
+  name: string;
 }

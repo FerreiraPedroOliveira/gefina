@@ -1,15 +1,12 @@
-
 import { Router } from 'express';
-
+import { invoiceSchema, toFieldErrors } from './invoice.Schema.ts';
 import {
   findAllInvoices,
   findInvoiceById,
   insertInvoice,
   modifyInvoice,
-  removeInvoice
+  removeInvoice,
 } from './invoice.service.ts';
-
-import { invoiceSchema, toFieldErrors } from './invoice.Schema.ts';
 
 const router = Router();
 
@@ -34,8 +31,8 @@ router.get('/:id', async (request, response) => {
     return response.status(400).json({
       error: {
         status: 400,
-        message: 'Identificador inválido.'
-      }
+        message: 'Identificador inválido.',
+      },
     });
   }
 
@@ -45,8 +42,8 @@ router.get('/:id', async (request, response) => {
     return response.status(404).json({
       error: {
         status: 404,
-        message: 'Fatura não encontrada.'
-      }
+        message: 'Fatura não encontrada.',
+      },
     });
   }
 
@@ -61,8 +58,8 @@ router.post('/', async (request, response) => {
       error: {
         status: 400,
         message: 'Dados inválidos',
-        fields: toFieldErrors(result.error)
-      }
+        fields: toFieldErrors(result.error),
+      },
     });
   }
 
@@ -78,8 +75,8 @@ router.put('/:id', async (request, response) => {
     return response.status(400).json({
       error: {
         status: 400,
-        message: 'Identificador inválido.'
-      }
+        message: 'Identificador inválido.',
+      },
     });
   }
 
@@ -89,8 +86,8 @@ router.put('/:id', async (request, response) => {
     return response.status(404).json({
       error: {
         status: 404,
-        message: 'Fatura não encontrada.'
-      }
+        message: 'Fatura não encontrada.',
+      },
     });
   }
 
@@ -104,8 +101,8 @@ router.delete('/:id', async (request, response) => {
     return response.status(400).json({
       error: {
         status: 400,
-        message: 'Identificador inválido.'
-      }
+        message: 'Identificador inválido.',
+      },
     });
   }
 
@@ -115,8 +112,8 @@ router.delete('/:id', async (request, response) => {
     return response.status(404).json({
       error: {
         status: 404,
-        message: 'Fatura não encontrada.'
-      }
+        message: 'Fatura não encontrada.',
+      },
     });
   }
 
