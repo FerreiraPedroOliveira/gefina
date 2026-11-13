@@ -4,7 +4,7 @@
     "dev": "vite",
     "build": "vite build",
     "check": "tsc --noEmit",
-    "test": "vistest run"
+    "test": "vitest run"
   },
   "devDependencies": {
     "@testing-library/react": "^16.3.3",
