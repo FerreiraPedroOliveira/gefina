@@ -26,7 +26,7 @@ export default function App() {
                 className={({ isActive }) => apply(isActive)}
                 to="/"
               >
-                Pinel inicial
+                Painel inicial
               </NavLink>
             </li>
             <li>

@@ -56,7 +56,7 @@ export default function DashBoardPage() {
         />
         <SummaryCard
           label="Clientes:"
-          value={String(dashboard.totals.customersCount)}
+          value={String(dashboard.totals.customerCount)}
         />
       </div>
       <div className="flex gap-6 mt-8">

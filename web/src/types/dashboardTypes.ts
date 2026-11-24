@@ -4,7 +4,7 @@ interface DashboardTotals {
   paid: number;
   pending: number;
   invoiceCount: number;
-  customersCount: number;
+  customerCount: number;
 }
 
 export interface Dashboard {

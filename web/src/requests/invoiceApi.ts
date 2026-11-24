@@ -41,12 +41,12 @@ export async function createInvoice(
 }
 
 export async function updateInvoice(
-  _id: number,
+  id: number,
   datas: InvoiceInput,
 ): Promise<void> {
-  const response = await fetch('api/invoice', {
+  const response = await fetch(`/api/invoices/${id}`, {
     method: 'PUT',
-    headers: { 'content-type': 'aplication/type' },
+    headers: { 'content-type': 'application/type' },
     body: JSON.stringify(datas),
   });
   if (!response.ok) throw new Error('Falha ao editar fatura.');
